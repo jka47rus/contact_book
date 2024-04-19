@@ -75,7 +75,7 @@ public class Interface {
     }
 
     private void addContact() {
-        System.out.println("Введите данные контакта в формате: abj;телефон;email");
+        System.out.println("Введите данные контакта в формате: ФИО;телефон;email");
         String info = scanner.nextLine();
         System.out.println(interfaceService.addContact(info));
 
