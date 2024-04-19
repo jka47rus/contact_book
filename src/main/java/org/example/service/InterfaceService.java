@@ -2,6 +2,7 @@ package org.example.service;
 
 
 import org.example.model.PersonInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class InterfaceService {
 
     private final Map<String, PersonInfo> people = new HashMap<>();
+    @Value("${app.file-for-save}")
+    private String pathForSave;
 
     public String delete(String email) {
         String message = "";
@@ -75,7 +78,7 @@ public class InterfaceService {
             message = "Ошибка при попытке записи данных в файл!" + "\n";
         } else {
             try {
-                Files.write(Paths.get("data/contacts.txt"), contacts);
+                Files.write(Paths.get(pathForSave), contacts);
                 message = "Файл успешно записан!" + "\n";
             } catch (Exception ex) {
                 System.out.println(ex);
